@@ -6,21 +6,21 @@ import {ActionCreator} from "../../reducer/reducer";
 
 interface Props {
   changeLevel: (levels: string[]) => void;
-};
+}
 
 class LevelFilter extends React.PureComponent<Props> {
   private selectedCheckboxes: Set<string>;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.handleLevelCheck = this.handleLevelCheck.bind(this);
   }
 
-  componentDidMount = () => {
+  componentDidMount(): void {
     this.selectedCheckboxes = new Set();
   }
-  
-  handleLevelCheck(label: string) {
+
+  handleLevelCheck(label: string): void {
     const {changeLevel} = this.props;
     if (this.selectedCheckboxes.has(label)) {
       this.selectedCheckboxes.delete(label);
@@ -30,7 +30,7 @@ class LevelFilter extends React.PureComponent<Props> {
     changeLevel([...this.selectedCheckboxes]);
   }
 
-  render() {
+  render(): React.ReactNode {
     return (
       <fieldset>
         {LevelsList.map((label) => (

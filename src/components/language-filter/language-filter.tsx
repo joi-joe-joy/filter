@@ -6,21 +6,21 @@ import {ActionCreator} from "../../reducer/reducer";
 
 interface Props {
   changeLanguage: (languages: string[]) => void;
-};
+}
 
 class LanguageFilter extends React.PureComponent<Props> {
   private selectedCheckboxes: Set<string>;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.handleLangCheck = this.handleLangCheck.bind(this);
   }
 
-  componentDidMount = () => {
+  componentDidMount(): void {
     this.selectedCheckboxes = new Set();
   }
-  
-  handleLangCheck(label: string) {
+
+  handleLangCheck(label: string): void {
     const {changeLanguage} = this.props;
     if (this.selectedCheckboxes.has(label)) {
       this.selectedCheckboxes.delete(label);
@@ -30,7 +30,7 @@ class LanguageFilter extends React.PureComponent<Props> {
     changeLanguage([...this.selectedCheckboxes]);
   }
 
-  render() {
+  render(): React.ReactNode {
     return (
       <fieldset>
         {LanguagesList.map((label) => (

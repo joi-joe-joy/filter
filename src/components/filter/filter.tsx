@@ -7,25 +7,24 @@ import Search from "../search/search";
 
 interface Props {
   reset: () => void;
-};
+}
 
 class Filter extends React.PureComponent<Props> {
   private formRef: React.RefObject<HTMLFormElement>;
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.formRef = React.createRef();
     this.handleReset = this.handleReset.bind(this);
   }
 
-  handleReset(event) {
+  handleReset(event: React.FormEvent<HTMLButtonElement>): void {
     event.preventDefault();
     const {reset} = this.props;
     this.formRef.current.reset();
     reset();
-  };
+  }
 
-  render() {
-
+  render(): React.ReactNode {
     return (
       <form style={{display: `flex`}} ref={this.formRef}>
         <LanguageFilter/>
@@ -33,7 +32,7 @@ class Filter extends React.PureComponent<Props> {
         <Search/>
         <button type="reset" onClick={this.handleReset}>Reset filters</button>
       </form>
-    )
+    );
   }
 }
 

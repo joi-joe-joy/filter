@@ -8,15 +8,15 @@ import App from './components/app/app';
 import {reducer} from "./reducer/reducer";
 
 const store = createStore(
-  reducer,
-  composeWithDevTools(
-      applyMiddleware(thunk)
-  )
+    reducer,
+    composeWithDevTools(
+        applyMiddleware(thunk)
+    )
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById(`root`)
 );

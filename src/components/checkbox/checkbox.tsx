@@ -3,32 +3,32 @@ import * as React from 'react';
 interface Props {
   onCheckChange: (label: string) => void;
   label: string;
-};
+}
 
 interface State {
   isChecked: boolean;
-};
+}
 
 class Checkbox extends React.PureComponent<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       isChecked: false,
-    }
+    };
     this.handleCheckChange = this.handleCheckChange.bind(this);
   }
 
-  handleCheckChange() {
+  handleCheckChange(): void {
     const {onCheckChange, label} = this.props;
     this.setState(({isChecked}) => ({
-        isChecked: !isChecked,
+      isChecked: !isChecked
     }));
     onCheckChange(label);
-  };
+  }
 
-  render() {
-    const { label } = this.props;
-    const { isChecked } = this.state;
+  render(): React.ReactNode {
+    const {label} = this.props;
+    const {isChecked} = this.state;
 
     return (
       <span className="checkbox">

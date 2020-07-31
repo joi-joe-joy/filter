@@ -3,7 +3,7 @@ import {Card as CardInterface} from "../../types";
 
 interface Props {
   card: CardInterface;
-};
+}
 
 const Card: React.FC<Props> = (props: Props) => {
   const {card} = props;
@@ -13,7 +13,7 @@ const Card: React.FC<Props> = (props: Props) => {
       <h4>{card.author}</h4>
       <p>{card.level} / {card.language}</p>
     </div>
-  )
-}
+  );
+};
 
 export default Card;

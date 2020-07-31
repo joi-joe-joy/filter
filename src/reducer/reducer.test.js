@@ -1,14 +1,5 @@
 import {reducer, ActionType, ActionCreator} from "./reducer";
-
-const lectures = [
-  {
-    id: 1,
-    title: `@typescript-eslint`,
-    author: `Micael Perra`,
-    level: `HOT`,
-    language: `EN`
-  }
-];
+import {lectures} from "../mocks/lectures";
 
 describe(`Reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {

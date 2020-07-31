@@ -4,19 +4,19 @@ import {ActionCreator} from "../../reducer/reducer";
 
 interface Props {
   getSearchText: (text: string) => void;
-};
+}
 
 const Search: React.FC<Props> = (props: Props) => {
 
   const handleSearchText = (event) => {
     const {getSearchText} = props;
-    let value = event.target.value;
+    const value = event.target.value;
     getSearchText(value);
   };
 
   return (
     <input type="search" name="search" placeholder="Search"
-      onChange={handleSearchText}        
+      onChange={handleSearchText}
     />
   );
 };

@@ -6,7 +6,7 @@ import Card from "../card/card";
 
 interface Props {
   cardsList: CardInterface[];
-};
+}
 
 const CardsList: React.FC<Props> = (props: Props) => {
   const {cardsList} = props;
@@ -20,7 +20,7 @@ const CardsList: React.FC<Props> = (props: Props) => {
       ))}
       {!cardsList.length && <div style={{margin: `10px`}}>No topics</div>}
     </div>
-  )
+  );
 };
 
 const mapStateToProps = (state) => ({
