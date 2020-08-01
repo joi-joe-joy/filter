@@ -6,14 +6,13 @@ interface Props {
 }
 
 const Checkbox: React.FC<Props> = (props: Props) => {
-  const {label} = props;
+  const {onCheckChange, label} = props;
   const [isChecked, setCheck] = React.useState(false);
 
   const handleCheckChange = (): void => {
-    const {onCheckChange, label} = props;
     setCheck(!isChecked);
     onCheckChange(label);
-  }
+  };
 
   return (
     <span className="checkbox">
@@ -28,6 +27,6 @@ const Checkbox: React.FC<Props> = (props: Props) => {
       </label>
     </span>
   );
-}
+};
 
 export default Checkbox;

@@ -23,7 +23,7 @@ const LanguageFilter: React.FC<Props> = (props: Props) => {
       selectedCheckboxes.add(label);
     }
     changeLanguage([...selectedCheckboxes]);
-  }
+  };
 
   return (
     <fieldset>
