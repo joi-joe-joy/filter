@@ -8,42 +8,35 @@ interface Props {
   changeLevel: (levels: string[]) => void;
 }
 
-class LevelFilter extends React.PureComponent<Props> {
-  private selectedCheckboxes: Set<string>;
+const LevelFilter: React.FC<Props> = (props: Props) => {
+  let selectedCheckboxes: Set<string>;
 
-  constructor(props: Props) {
-    super(props);
-    this.handleLevelCheck = this.handleLevelCheck.bind(this);
-  }
+  React.useEffect(() => {
+    selectedCheckboxes = new Set();
+  });
 
-  componentDidMount(): void {
-    this.selectedCheckboxes = new Set();
-  }
-
-  handleLevelCheck(label: string): void {
-    const {changeLevel} = this.props;
-    if (this.selectedCheckboxes.has(label)) {
-      this.selectedCheckboxes.delete(label);
+  const handleLevelCheck = (label: string): void => {
+    const {changeLevel} = props;
+    if (selectedCheckboxes.has(label)) {
+      selectedCheckboxes.delete(label);
     } else {
-      this.selectedCheckboxes.add(label);
+      selectedCheckboxes.add(label);
     }
-    changeLevel([...this.selectedCheckboxes]);
-  }
+    changeLevel([...selectedCheckboxes]);
+  };
 
-  render(): React.ReactNode {
-    return (
-      <fieldset>
-        {LevelsList.map((label) => (
-          <Checkbox
-            label={label}
-            onCheckChange={this.handleLevelCheck}
-            key={label}
-          />
-        ))}
-      </fieldset>
-    );
-  }
-}
+  return (
+    <fieldset>
+      {LevelsList.map((label) => (
+        <Checkbox
+          label={label}
+          onCheckChange={handleLevelCheck}
+          key={label}
+        />
+      ))}
+    </fieldset>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   changeLevel(levels) {

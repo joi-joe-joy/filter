@@ -5,45 +5,29 @@ interface Props {
   label: string;
 }
 
-interface State {
-  isChecked: boolean;
-}
+const Checkbox: React.FC<Props> = (props: Props) => {
+  const {label} = props;
+  const [isChecked, setCheck] = React.useState(false);
 
-class Checkbox extends React.PureComponent<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isChecked: false,
-    };
-    this.handleCheckChange = this.handleCheckChange.bind(this);
-  }
-
-  handleCheckChange(): void {
-    const {onCheckChange, label} = this.props;
-    this.setState(({isChecked}) => ({
-      isChecked: !isChecked
-    }));
+  const handleCheckChange = (): void => {
+    const {onCheckChange, label} = props;
+    setCheck(!isChecked);
     onCheckChange(label);
   }
 
-  render(): React.ReactNode {
-    const {label} = this.props;
-    const {isChecked} = this.state;
-
-    return (
-      <span className="checkbox">
-        <label>
-          <input
-            type="checkbox"
-            value={label}
-            checked={isChecked}
-            onChange={this.handleCheckChange}
-          />
-          {label}
-        </label>
-      </span>
-    );
-  }
+  return (
+    <span className="checkbox">
+      <label>
+        <input
+          type="checkbox"
+          value={label}
+          checked={isChecked}
+          onChange={handleCheckChange}
+        />
+        {label}
+      </label>
+    </span>
+  );
 }
 
 export default Checkbox;

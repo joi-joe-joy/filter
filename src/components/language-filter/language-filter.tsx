@@ -8,42 +8,35 @@ interface Props {
   changeLanguage: (languages: string[]) => void;
 }
 
-class LanguageFilter extends React.PureComponent<Props> {
-  private selectedCheckboxes: Set<string>;
+const LanguageFilter: React.FC<Props> = (props: Props) => {
+  let selectedCheckboxes: Set<string>;
 
-  constructor(props: Props) {
-    super(props);
-    this.handleLangCheck = this.handleLangCheck.bind(this);
-  }
+  React.useEffect(() => {
+    selectedCheckboxes = new Set();
+  });
 
-  componentDidMount(): void {
-    this.selectedCheckboxes = new Set();
-  }
-
-  handleLangCheck(label: string): void {
-    const {changeLanguage} = this.props;
-    if (this.selectedCheckboxes.has(label)) {
-      this.selectedCheckboxes.delete(label);
+  const handleLangCheck = (label: string): void => {
+    const {changeLanguage} = props;
+    if (selectedCheckboxes.has(label)) {
+      selectedCheckboxes.delete(label);
     } else {
-      this.selectedCheckboxes.add(label);
+      selectedCheckboxes.add(label);
     }
-    changeLanguage([...this.selectedCheckboxes]);
+    changeLanguage([...selectedCheckboxes]);
   }
 
-  render(): React.ReactNode {
-    return (
-      <fieldset>
-        {LanguagesList.map((label) => (
-          <Checkbox
-            label={label}
-            onCheckChange={this.handleLangCheck}
-            key={label}
-          />
-        ))}
-      </fieldset>
-    );
-  }
-}
+  return (
+    <fieldset>
+      {LanguagesList.map((label) => (
+        <Checkbox
+          label={label}
+          onCheckChange={handleLangCheck}
+          key={label}
+        />
+      ))}
+    </fieldset>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   changeLanguage(languages) {
