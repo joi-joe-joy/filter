@@ -9,32 +9,25 @@ interface Props {
   reset: () => void;
 }
 
-class Filter extends React.PureComponent<Props> {
-  private formRef: React.RefObject<HTMLFormElement>;
-  constructor(props: Props) {
-    super(props);
-    this.formRef = React.createRef();
-    this.handleReset = this.handleReset.bind(this);
-  }
+const Filter: React.FC<Props> = (props: Props) => {
+  const formRef: React.RefObject<HTMLFormElement> = React.useRef(null);
 
-  handleReset(event: React.FormEvent<HTMLButtonElement>): void {
+  const handleReset = (event: React.FormEvent<HTMLButtonElement>): void => {
     event.preventDefault();
-    const {reset} = this.props;
-    this.formRef.current.reset();
+    const {reset} = props;
+    formRef.current.reset();
     reset();
-  }
+  };
 
-  render(): React.ReactNode {
-    return (
-      <form style={{display: `flex`}} ref={this.formRef}>
-        <LanguageFilter/>
-        <LevelFilter/>
-        <Search/>
-        <button type="reset" onClick={this.handleReset}>Reset filters</button>
-      </form>
-    );
-  }
-}
+  return (
+    <form style={{display: `flex`}} ref={formRef}>
+      <LanguageFilter/>
+      <LevelFilter/>
+      <Search/>
+      <button type="reset" onClick={handleReset}>Reset filters</button>
+    </form>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   reset() {
