@@ -9,7 +9,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "7.2.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "redux": "4.0.5",
     "redux-devtools-extension": "2.13.8",
     "redux-thunk": "2.3.0",
@@ -63,6 +63,6 @@
     "utility-types": "3.10.0",
     "webpack": "4.44.1",
     "webpack-cli": "3.3.12",
-    "webpack-dev-server": "3.11.0"
+    "webpack-dev-server": "5.2.2"
   }
 }
